@@ -1,0 +1,12 @@
+.inputs2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(21vw, 1fr));
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  // justify-content: space-around;
+  // flex-wrap: wrap;
+  align-items: center;
+  // mat-form-field {
+  //   width: 100%;
+  // }
+}

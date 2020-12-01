@@ -1,0 +1,44 @@
+<div class="host">
+  <app-title title="Modifie achat"></app-title>
+  <mat-card>
+    <form [formGroup]="myForm">
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-md-3 col-sm-6">
+          <mat-label>montant</mat-label>
+          <input matInput formControlName="montant" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-3 col-sm-6">
+          <mat-label>Credit</mat-label>
+          <input matInput formControlName="credit" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-3 col-sm-6">
+          <mat-label>Avance</mat-label>
+          <input matInput formControlName="avance" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-3 col-sm-6">
+          <mat-label>Mode payment</mat-label>
+          <mat-select #mode formControlName="modePayement">
+            <mat-option value="0">...</mat-option>
+            <mat-option *ngFor="let e of uow.typePayemet" [value]="e">{{e}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+    </form>
+
+  <!-- {{myForm.value | json}} -->
+  <div class="actions">
+    <button mat-button [routerLink]="['/admin/state/all']" type="button">Retour</button>&nbsp;&nbsp;
+    <!-- <button mat-button (click)="reset()" type="button">Annuler</button>&nbsp;&nbsp; -->
+    <button mat-raised-button cdkFocusInitial color="primary" (click)="submit(myForm.value)"
+      [disabled]="myForm.invalid">Enregistre</button>
+  </div>
+  <mat-divider> </mat-divider>
+  <div class="pt-3">
+    <app-detail [reCalculteTotalForParent]="reCalculteTotalFromCHild" [fromParent]="toChild"></app-detail>
+  </div>
+</mat-card>
+</div>

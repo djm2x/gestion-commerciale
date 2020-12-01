@@ -1,0 +1,38 @@
+<button mat-raised-button color="accent" (click)="tabService.tabProductIndex.setValue(0)">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+<mat-card>
+  <div class="row mt-3">
+    <div class="col-5 col-md-5">
+      <img [src]="getImage(o.image)" style="width: 100%;" alt="{{o.titreFr}}" srcset="">
+    </div>
+    <div class="col-7 col-md-7">
+      <div class="" style="font-size: .8em;">
+        <p>{{o.titreFr}}</p>
+        <!-- <p class="stock">En stocke {{o.qteStock}}</p> -->
+      </div>
+    </div>
+
+    <div class="col-md-12 d-flex justify-content-between align-items-baseline mt-4">
+      <p class="font-weight-bold">{{o.prixUnitaire}} DH</p>
+
+      <div>
+        <mat-form-field style="width: 50px;">
+          <input matInput #q value="0" placeholder="Quantité" type="number">
+        </mat-form-field>
+        <!-- <p> / {{e.qteStock}}</p> -->
+        &nbsp;&nbsp;
+        <button mat-flat-button [disabled]="+q.value === 0 || isNotANumber(q.value) "
+          (click)="add(o, q.value); q.value = 0" color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+    <mat-divider [inset]="true">
+    </mat-divider>
+    <div class="col-md-12 mt-4">
+      <h5>Description :</h5>
+      <p style="font-size: .9em;">{{o.description}}</p>
+    </div>
+  </div>
+</mat-card>

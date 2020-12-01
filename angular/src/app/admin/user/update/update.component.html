@@ -1,0 +1,52 @@
+<div class="dialog">
+  <h1 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+      <span>{{title}}</span>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+  </h1>
+  <div class="content">
+    <div mat-dialog-content>
+
+      <form [formGroup]="myForm">
+        <mat-form-field>
+          <mat-label>Nom Complete</mat-label>
+          <input matInput formControlName="nomComplete" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Mot de pass</mat-label>
+          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required>
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Tel</mat-label>
+          <input matInput formControlName="tel" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="idRole">
+            <mat-option *ngFor="let e of roles | async" [value]="e.id">{{ e.nom }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </form>
+
+    </div>
+
+    <div class="actions" mat-dialog-actions>
+      <button mat-button (click)="onNoClick()" type="button">Annuler</button>&nbsp;&nbsp;
+      <button mat-raised-button color="primary" (click)="onOkClick(myForm.value)"
+        [disabled]="myForm.invalid">Enregistre</button>
+    </div>
+  </div>
+</div>

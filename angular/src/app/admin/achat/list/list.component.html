@@ -1,0 +1,95 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="example-table-container">
+    <table mat-table #table [dataSource]="dataSource" multiTemplateDataRows aria-label="Elements" matSort>
+      <ng-container [matColumnDef]="columnDefs[0].columnDef">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[0].headName}}</th>
+        <td mat-cell *matCellDef="let row">{{row[columnDefs[0].columnDef].nom}}</td>
+      </ng-container>
+      <ng-container [matColumnDef]="columnDefs[1].columnDef">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[1].headName}}</th>
+        <td mat-cell *matCellDef="let row">{{row[columnDefs[1].columnDef].titreFr}}</td>
+      </ng-container>
+      <ng-container [matColumnDef]="columnDefs[2].columnDef">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[2].headName}}</th>
+        <td mat-cell *matCellDef="let row">{{row[columnDefs[2].columnDef]}}</td>
+      </ng-container>
+      <ng-container [matColumnDef]="columnDefs[3].columnDef">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[3].headName}}</th>
+        <td mat-cell *matCellDef="let row">{{row[columnDefs[3].columnDef]}}</td>
+      </ng-container>
+      <ng-container [matColumnDef]="columnDefs[4].columnDef">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[4].headName}}</th>
+        <td mat-cell *matCellDef="let row">{{row[columnDefs[4].columnDef] | date : "dd/MM/yyyy"}}</td>
+      </ng-container>
+      <ng-container matColumnDef="option" style="flex-direction: row-reverse;">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let row; let i = index">
+          <div class="button-row">
+            <button mat-icon-button color="primary" (click)="edit(row)">
+              <mat-icon>create</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="delete(i)">
+              <mat-icon>delete_sweep</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+  </div>
+
+  <mat-paginator #paginator [length]="resultsLength" pageIndex="0" pageSize="25"
+    [pageSizeOptions]="[10, 25, 50, 100, 250]" showFirstLastButtons>
+  </mat-paginator>
+</div>
+
+<mat-card>
+  <form [formGroup]="myForm">
+    <div class="row">
+      <mat-form-field appearance="outline" class="col-md-4">
+        <mat-label>Mode payment</mat-label>
+        <mat-select #mode formControlName="modePayement">
+          <mat-option value="0">...</mat-option>
+          <mat-option *ngFor="let e of uow.typePayemet" [value]="e">{{e}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-md-4" *ngIf="mode.value === 'Chèque'">
+        <mat-label>Numero cheque</mat-label>
+        <input matInput formControlName="numCheque" type="text">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-4">
+        <mat-label>Montant</mat-label>
+        <input matInput formControlName="montant" [value]="total" type="number" readonly>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-4">
+        <mat-label>Credit</mat-label>
+        <input matInput formControlName="credit" type="number">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-4">
+        <mat-label>Avance</mat-label>
+        <input matInput formControlName="avance" type="number">
+      </mat-form-field>
+
+    </div>
+
+
+    <button style="margin: 20px 0" [disabled]="myForm.invalid" mat-raised-button color="primary"
+      (click)="submit(myForm.value)">
+      <mat-icon>add</mat-icon>
+      Valider l'Achat
+    </button>
+    &nbsp;
+    <button style="margin: 20px 0" mat-raised-button [routerLink]="['/admin/state']" >
+      Retour
+    </button>
+  </form>
+</mat-card>

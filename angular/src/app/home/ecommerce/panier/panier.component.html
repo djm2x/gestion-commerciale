@@ -1,0 +1,65 @@
+<!-- <button mat-raised-button (click)="tabService.tabEcommerceIndex.setValue(0)"><mat-icon>arrow_back</mat-icon></button> -->
+<div class="row">
+
+  <div class="col-md-6">
+    <!-- <p>Total : {{service.globalTotal}}</p> -->
+
+    <button mat-raised-button color="accent" (click)="tabService.tabEcommerceIndex.setValue(0)">
+      <!-- Continue l'achat -->
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    &nbsp;&nbsp;
+    <button mat-raised-button color="primary" [disabled]="false && service.panniers.length === 0"
+      (click)="tabService.tabEcommerceIndex.setValue(2)">Valider la commande</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <mat-card>
+      <h5 class="mb-3">Votre panier contient :</h5>
+      <div class="even-odd">
+        <ng-container *ngIf="service.panniers.length === 0; else elseTemplate">
+          <p>zero article</p>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <div class="mycol back" style="font-size: .9em;" *ngFor="let e of service.panniers; let i=index">
+            <div class="w-100 mb-2">
+              <p>{{e.titreFr}}</p>
+              <!-- <p>{{e.prixUnitaire}}</p> -->
+            </div>
+
+            <div class="myrow2 space-between" style="width: 100%;">
+              <div>
+                <mat-form-field>
+                  <input matInput [value]="e.prixUnitaire" type="number" placeholder="Prix" readonly>
+                </mat-form-field>
+                &nbsp;&nbsp;
+                <mat-form-field>
+                  <input matInput #qtePrise [value]="e.qtePrise" type="number" placeholder="Quantité">
+                </mat-form-field>
+              </div>
+              <!-- <p> = {{+prixVente.value * +qtePrise.value}}</p> -->
+              <div class="myrow2">
+
+                <p>{{service.panniers[i].prixTotal.toFixed(2)}} DH</p>
+                <button mat-icon-button (click)="edit(i, qtePrise.value)" color="warn">
+                  <mat-icon>create</mat-icon>
+                </button>
+                <button mat-icon-button (click)="delete(e)" color="warn">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+
+
+      </div>
+    </mat-card>
+  </div>
+
+
+</div>
+
+<!-- || service.panniers.length === 0 -->

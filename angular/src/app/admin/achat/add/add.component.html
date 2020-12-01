@@ -1,0 +1,60 @@
+<mat-card>
+  <form [formGroup]="myForm">
+    <div class="row">
+
+      <!-- <mat-form-field appearance="outline">
+        <mat-label>Fournisseur</mat-label>
+        <mat-select formControlName="fournisseur" (selectionChange)="filter()">
+          <mat-option value="0">...</mat-option>
+          <mat-option *ngFor="let e of fourns | async" [value]="e">{{e.nom}}</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+
+      <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Fournisseur</mat-label>
+        <input matInput [formControl]="myAuto" [matAutocomplete]="auto" placeholder="Auto completion">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let e of filteredOptions | async" [value]="e">{{ e.societe }} </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Categorie</mat-label>
+        <mat-select [formControl]="idCategorie" (selectionChange)="filter()">
+          <mat-option value="0">...</mat-option>
+          <mat-option *ngFor="let e of categories | async" [value]="e.id">{{e.libelle}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-12">
+        <mat-label>Articles</mat-label>
+        <mat-select formControlName="article" (selectionChange)="setArticle($event.value)">
+          <mat-option *ngFor="let e of articles" [value]="e">{{e.titreFr}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+   
+      <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Prix Achat</mat-label>
+        <input matInput formControlName="prixAchat" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Qte acheté</mat-label>
+        <input matInput formControlName="qte" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Prix Unitaire</mat-label>
+        <input matInput formControlName="prixUnitaire" type="number" required>
+      </mat-form-field>
+    </div>
+
+    <!-- {{myForm.value | json}} -->
+    <div class="right">
+      <button  mat-raised-button color="primary" [disabled]="isEmpty" (click)="submit(myForm.value)">
+        <mat-icon>add</mat-icon>
+        Achat
+      </button>
+    </div>
+  </form>
+</mat-card>

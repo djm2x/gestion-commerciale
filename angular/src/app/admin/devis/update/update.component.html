@@ -1,0 +1,39 @@
+<div class="host">
+  <app-title title="Modifie Devis"></app-title>
+  <mat-card>
+    <form [formGroup]="myForm">
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-md-4 col-sm-4">
+          <mat-label>Montant</mat-label>
+          <input matInput formControlName="montant" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline"  class="col-md-4 col-sm-4">
+          <mat-label>Client</mat-label>
+          <!-- <textarea matInput rows="0" formControlName="nom" required></textarea> -->
+          <input matInput formControlName="client" required >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline"  class="col-md-4 col-sm-4">
+          <mat-label>Date Achat</mat-label>
+          <input matInput readonly [matDatepicker]="picker" formControlName="date" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="true"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+      </div>
+    </form>
+
+  <!-- {{myForm.value | json}} -->
+  <div class="actions">
+    <button mat-button [routerLink]="['/admin/devis']" type="button">Retour</button>&nbsp;&nbsp;
+    <!-- <button mat-button (click)="reset()" type="button">Annuler</button>&nbsp;&nbsp; -->
+    <button mat-raised-button cdkFocusInitial color="primary" (click)="submit(myForm.value)"
+      [disabled]="myForm.invalid">Enregistre</button>
+  </div>
+  <mat-divider> </mat-divider>
+  <div class="pt-3">
+    <app-detail [fromParent]="toChild"></app-detail>
+  </div>
+</mat-card>
+</div>

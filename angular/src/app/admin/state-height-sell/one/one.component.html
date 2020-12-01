@@ -1,0 +1,15 @@
+<div class="host">
+    <mat-card>
+        <!-- <mat-form-field>
+            <mat-label>Années</mat-label>
+            <mat-select [formControl]="year" (selectionChange)="selectChange()">
+                <mat-option *ngFor="let e of uow.years" [value]="e">{{ e }}</mat-option>
+            </mat-select>
+        </mat-form-field> -->
+        <div style="display: block;">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors">
+            </canvas>
+        </div>
+    </mat-card>
+</div>

@@ -1,0 +1,30 @@
+mat-card {
+  // background-color: transparent;
+  perspective: 1000px;
+  transition: transform 0.8s ease-in-out;
+  
+  &:hover {
+    transform: rotateY(180deg);
+  }
+
+  mat-card-content {
+    transition: transform 0.8s ease-in-out;
+    transform-style: preserve-3d;
+
+    &:hover {
+        transform: rotateY(180deg);
+    }
+  }
+
+
+  .face {
+    backface-visibility: hidden;
+  }
+
+  .back {
+    backface-visibility: hidden;
+    text-align: right;
+    transform: rotateY(180deg);
+    // display: none;
+  }
+}

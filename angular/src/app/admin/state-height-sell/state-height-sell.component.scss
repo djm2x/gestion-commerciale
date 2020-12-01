@@ -1,0 +1,139 @@
+section {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+::ng-deep h3 {
+  margin: 0 !important;
+}
+
+.host {
+  margin: 1em !important;
+}
+
+.expension {
+  margin: 20px 0;
+}
+
+.right {
+  margin: 0 20px 20px;
+}
+
+mat-panel-title {
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0 0 0 10px;
+  }
+
+  mat-icon {
+    margin-top: 5px;
+  }
+}
+.inputs2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25vw, 1fr));
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  // justify-content: space-around;
+  // flex-wrap: wrap;
+  align-items: center;
+  // mat-form-field {
+  //   width: 100%;
+  // }
+  margin: 15px 15px 0;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: rgb(204, 204, 204);
+  // color: white;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  .mytable {
+    padding: 0 5px;
+    table {
+
+      box-shadow: 1px 1px 5px gray;
+    }
+  }
+
+  .prices {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0 5px;
+    p {
+      padding: 5px;
+  
+      box-shadow: 1px 1px 5px gray;
+    }
+  }
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.mat-table-sticky:first-child {
+  border-right: 1px solid #e0e0e0;
+}
+
+.mat-table-sticky:last-child {
+  border-left: 1px solid #e0e0e0;
+}
+
+
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+.rightN {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  padding: 0 15px 15px 0;
+}
+
+::ng-deep .mat-header-row .mat-sort-header-button, .mat-header-row .mat-header-cell {
+  // font-size: .7em;
+  // padding: 0 2px;
+}
+
+.mat-header-cell:first-child,
+.mat-cell:first-child {
+  // width: 800px !important;
+  // padding-right: 0 !important;
+  min-width: 400px !important;
+}

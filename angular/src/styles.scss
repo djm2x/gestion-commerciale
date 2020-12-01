@@ -1,0 +1,93 @@
+/* You can add global styles to this file, and also import other style files */
+// @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic");
+
+@import "../node_modules/bootstrap-css-only/css/bootstrap.min.css";
+// @import "../node_modules/bootstrap-css-only/css/bootstrap-grid.min.css";
+@import "./mat_table.scss";
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "../node_modules/font-awesome/css/font-awesome.min.css";
+@import "./assets/iconfont/material-icons.css";
+
+
+// @import '~@angular/material/theming';
+// @import 'themes.scss';
+
+
+// @include mat-core();
+
+// $custom-theme-primary: mat-palette($mat-grey, 900);
+// $custom-theme-accent:mat-palette($mat-pink, A200, A100, A400);
+// $custom-theme-warn: mat-palette($mat-red);
+// $custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+// $custom-theme-d: mat-dark-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+
+
+
+// .dark-theme {
+//   @include angular-material-theme($custom-theme-d);
+//   // @include angular-material-theme($alt-theme);
+//   // @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+// }
+
+// .default-theme {
+//   // @import 'themes/default-theme.scss';
+//   @include angular-material-theme($custom-theme);
+//   // @include angular-material-theme($candy-app-theme);
+//   // @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// }
+
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+}
+
+table {
+  width: 100% !important;
+}
+
+.mat-dialog-container {
+  padding: 0 !important;
+}
+
+mat-tab-group {
+  background-color: white;
+}
+
+.purple-snackbar{
+  background-color: #673AB7 !important;
+  // padding: 0 5vw !important;
+  font-weight: bold !important;
+}
+
+.alert-snackbar {
+  background-color: rgb(184, 63, 63);
+}
+
+.host {
+  margin: 1rem;
+
+}
+
+.inputs2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25vw, 1fr));
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  // justify-content: space-around;
+  // flex-wrap: wrap;
+  align-items: center;
+  // mat-form-field {
+  //   width: 100%;
+  // }
+  margin: 15px 15px 0;
+}
+
+.rightN {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  padding: 0 15px 15px 0;
+}

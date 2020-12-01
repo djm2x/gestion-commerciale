@@ -1,0 +1,71 @@
+.one {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+p {
+  margin: 0;
+}
+.spc {
+  justify-content: space-between;
+}
+.col-md-2 {
+  margin-right: 15px;
+}
+
+.mrg {
+  margin-top: 10px;
+}
+
+.even-odd {
+  .back:nth-child(even) {
+    background: rgb(252, 252, 252);
+    padding: 7px;
+    box-shadow: 1px 1px 10px rgb(179, 179, 179);
+  }
+  .back:nth-child(odd) {
+    background: rgb(240, 240, 240);
+    padding: 7px;
+    box-shadow: 1px 1px 10px rgb(179, 179, 179);
+    margin-bottom: 2px;
+  }
+}
+
+.mycol {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.myrow2 {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  // flex-direction: column;
+  // width: 100%;
+  mat-form-field {
+    width: 56px;
+  }
+}
+
+.title {
+  p {
+    font-size: 0.9em;
+  }
+}
+
+.myrow {
+  width: 70%;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}

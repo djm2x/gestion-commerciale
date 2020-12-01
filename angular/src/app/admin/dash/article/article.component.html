@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-sm-6 col-md-12 col-lg-6 col-xl-4" *ngFor="let e of service.dataSource; let i=index">
+
+    <mat-card >
+      <div class="head">
+        <p>{{e.titreFr}}</p>
+        <p>{{e.titreAr}}</p>
+      </div>
+      <!-- <mat-divider
+        [inset]="true">
+      </mat-divider> -->
+      <div>
+        <img [src]="getImage(e.image)" alt="" srcset="">
+      </div>
+
+      <div class="info">
+        <div>
+          <p class="price">{{e.prixUnitaire}} DH</p>
+          <p class="stock">En stocke {{e.qteStock}}</p>
+        </div>
+
+        <div class="actions">
+          <!-- <button mat-icon-button (click)="increase(e)" color="primary"><mat-icon>remove</mat-icon></button> -->
+
+          <mat-form-field style="width: 50px;" [style.color]="e.qteStock < +q.value ? 'red' : ''">
+            <input matInput #q value="" placeholder="Qte">
+          </mat-form-field>
+          <!-- <p> / {{e.qteStock}}</p> -->
+          &nbsp;&nbsp;
+          <button mat-flat-button [disabled]="+q.value === 0 || isNotANumber(q.value) " (click)="add(e, q.value)"
+          [color]="e.qteStock < +q.value ? 'warn' : 'primary'">
+            <mat-icon>add</mat-icon>
+          </button>
+
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

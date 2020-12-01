@@ -1,0 +1,36 @@
+<div class="dialog">
+    <h1 mat-dialog-title>
+        <mat-toolbar role="toolbar" class="task-header">
+            <span>{{title}}</span>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+    </h1>
+    <div class="content">
+        <div mat-dialog-content>
+            <!-- <div #dataHTML>
+
+
+                <div  *ngFor="let e of datasource">
+                    <h4>{{e.libelle}}</h4>
+                    <table class="table table-bordered table-sm mt-3">
+                        <tr>
+                            <th>Code</th>
+                            <th>Titre fr</th>
+                        </tr>
+
+                        <tr *ngFor="let a of e.articles">
+                            <td>{{a.code}}</td>
+                            <td>{{a.titreFr}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div> -->
+            <h1>Excel Export</h1>
+        </div>
+
+        <div class="actions" mat-dialog-actions>
+            <button mat-button (click)="onNoClick()" type="button">Annuler</button>&nbsp;&nbsp;
+            <button mat-raised-button [disabled]="datasource.length === 0" color="primary" (click)="onOkClick()" [disabled]="false">Exporter</button>
+        </div>
+    </div>
+</div>

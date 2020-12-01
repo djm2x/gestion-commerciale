@@ -1,0 +1,42 @@
+<!-- <div class="host">
+  <app-title title="Vente"></app-title>
+
+  <mat-tab-group class="example-stretched-tabs mat-elevation-z4" #matgroup style="margin-top: 15px;">
+    <mat-tab label="Vente" [disabled]='false'>
+      <ng-template matTabContent>
+        <div class="mycard">
+          <form [formGroup]="myForm">
+            <div class="inputs2">
+              <mat-form-field appearance="outline">
+                <mat-label>total</mat-label>
+                <input matInput formControlName="total" required>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Client</mat-label>
+                <input matInput formControlName="client" required>
+              </mat-form-field>
+
+            </div>
+            <mat-divider>
+            </mat-divider>
+          </form>
+        </div>
+        <div class="actions">
+          <button mat-button [routerLink]="['/admin/vente/list']" type="button">Retour</button>&nbsp;&nbsp;
+          <button mat-raised-button cdkFocusInitial color="primary" (click)="submit(myForm.value)"
+            [disabled]="myForm.invalid">Enregistre</button>
+        </div>
+      </ng-template>
+
+
+    </mat-tab>
+    <mat-tab label="Detail vente" [disabled]='o.id === 0'>
+      <ng-template matTabContent>
+        <div style="margin: 15px;">
+          <app-detail [o]="o"></app-detail>
+        </div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div> -->

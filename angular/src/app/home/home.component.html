@@ -1,0 +1,105 @@
+<!-- <app-header [userName]="currentUser"></app-header> -->
+<!-- <app-menu></app-menu>
+<div class="content-wrapper">
+  <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer> -->
+
+<mat-toolbar class="mat-elevation-z6">
+  <mat-toolbar-row>
+    <img src="assets/logo.png" alt="Brik-afric" style="height: 40px;">
+    &nbsp;&nbsp;&nbsp;
+
+    <!-- <p>{{(this.myMedia.windowSizeChanged | async).width}}</p> -->
+    <span class="example-spacer"></span>
+
+
+    <!-- <p>&nbsp;||&nbsp;organisme : {{session.getUser.organisme.label}}</p> -->
+    <a mat-icon-button href="whatsapp://send?text=Salut Mr Khalid!&phone=+212661390510">
+      <i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i>
+    </a>
+
+
+    <a mat-icon-button href="tel:+212661390510">
+      <mat-icon>local_phone</mat-icon>
+    </a>
+
+    <!-- <a href="https://api.whatsapp.com/send?phone=15551234567">Send Message</a> -->
+
+    <button mat-icon-button [matMenuTriggerFor]="beforeMenu">
+      <mat-icon>search</mat-icon>
+    </button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <div class="d-flex ml-2 mr-2">
+
+        <div class="w-100">
+
+          <input class="form-control" [formControl]="myAuto" type="text" placeholder="Article" #v (click)="$event.stopPropagation();">
+          <!-- <input class="form-control" [formControl]="myAuto" [matAutocomplete]="auto" type="text" #v (click)="$event.stopPropagation();"> -->
+
+          <!-- <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let e of filteredOptions | async" [value]="e">{{ e.titreFr }} </mat-option>
+          </mat-autocomplete> -->
+
+          <mat-list dense>
+            <mat-list-item *ngFor="let e of filteredOptions | async" matRipple (click)="selected2(e)">
+              <div class="d-flex justify-content-between w-100 mb-3 mt-3">
+                <span>{{ e.titreFr.substring(0, 50) }}..</span>
+                <b><span style="white-space: nowrap;">{{ e.prixUnitaire}} Dh</span></b>
+              </div>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
+        </div>
+        <!-- <mat-form-field class="col-md-12 col-lg-4" appearance="outline">
+          <mat-label>Client</mat-label>
+          <input matInput [formControl]="myAuto" [matAutocomplete]="auto" placeholder="Auto completion">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let e of filteredOptions | async" [value]="e">{{ e.nom }} </mat-option>
+          </mat-autocomplete>
+        </mat-form-field> -->
+
+
+
+        <!-- <button mat-icon-button (click)="search(v.value)">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+        <button mat-icon-button (click)="reset()">
+          <mat-icon>refresh</mat-icon>
+        </button> -->
+      </div>
+    </mat-menu>
+
+    <button mat-raised-button [routerLink]="['/auth']">Connecter</button>
+
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container #sidenav class="example-sidenav-container" style="height: 100%;z-index: 9;">
+  <!-- <mat-sidenav>
+
+  </mat-sidenav> -->
+
+  <mat-sidenav-content>
+
+
+    <!-- <div style="margin: 65px auto 15px;" class="mybreadcrumb">
+        <div *ngFor="let s of patchRoute" class="items">
+          <a [routerLink]="['/home/connection']">{{ s !== '-1' ? s : 'nauveau'}}</a><mat-icon>navigate_next</mat-icon>
+        </div>
+      </div> -->
+
+    <main style="margin: 50px 0 0 0px;">
+      <router-outlet></router-outlet>
+    </main>
+
+    <!-- <footer>
+        <mat-toolbar class="mt-2 text" color="primary">
+          <mat-toolbar-row style="height: 70px">
+            <span style="margin-left: auto; margin-right: auto;"> © {{ d | date:"dd/MMMM/yyyy" }} - Yaasin MOURABIT</span>
+          </mat-toolbar-row>
+        </mat-toolbar>
+      </footer> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,143 @@
+<div class="host">
+  <section style="margin-bottom: 15px;">
+    <h3>Commande</h3>
+    <!-- <app-breadcrumbs></app-breadcrumbs> -->
+  </section>
+  <mat-divider></mat-divider>
+  <div class="d-flex flex-row-reverse row p-2">
+    <button class="col-sm-2 mr-2 mb-1" mat-raised-button [routerLink]="['/admin/state']">
+      <mat-icon>arrow_back</mat-icon>
+      Retour
+    </button>
+    <button class="col-sm-2 mr-2 mb-1" [disabled]="disable" mat-raised-button color="primary" (click)="imprimer(false)">
+      <mat-icon>local_printshop</mat-icon>
+      Imprimer
+    </button>
+
+    <button class="col-sm-5 mr-2 mb-1" [disabled]="disable" mat-raised-button color="accent" (click)="imprimer(true)">
+      <mat-icon>local_printshop</mat-icon>
+      Imprimer pour fournisseur
+    </button>
+  </div>
+
+  <div class="expension">
+    <mat-accordion>
+      <mat-expansion-panel expanded (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>search</mat-icon>
+            <p>Recherche</p>
+          </mat-panel-title>
+          <mat-panel-description>
+
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-divider>
+        </mat-divider>
+
+        <div class="row m-2">
+          <mat-form-field appearance="outline" class="col-md-6 col-sm-6 col-lg-4">
+            <mat-label>Fournisseur</mat-label>
+            <input matInput [formControl]="myAuto" [matAutocomplete]="auto" placeholder="Auto completion">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let e of filteredOptions | async" [value]="e">{{ e.societe }} </mat-option>
+            </mat-autocomplete>
+            <button mat-icon-button matSuffix (click)="clearFr()">
+              <mat-icon>clear</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="col-md-6 col-sm-6 col-lg-4">
+            <mat-label>Categorie</mat-label>
+            <mat-select [formControl]="idCategorie" (selectionChange)="selectChange()">
+              <mat-option *ngFor="let e of categories | async" [value]="e.id">{{ e.libelle }}</mat-option>
+            </mat-select>
+            <button mat-icon-button matSuffix (click)="clearCat()">
+              <mat-icon>clear</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="col-md-12 col-lg-4">
+            <mat-label>Article</mat-label>
+            <input matInput [formControl]="myArticle" [matAutocomplete]="auto2" placeholder="Auto completion">
+            <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selectedArticle($event)">
+              <mat-option *ngFor="let e of articleFilteredOptions | async" [value]="e">{{ e.titreFr }} </mat-option>
+            </mat-autocomplete>
+            <button mat-icon-button matSuffix (click)="clearFr()">
+              <mat-icon>clear</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <!-- <mat-form-field appearance="outline">
+          <input matInput readonly [matDatepicker]="picker" [formControl]="d1" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field> -->
+
+        </div>
+
+
+
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+
+  <div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade" *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="example-table-container">
+      <table mat-table #table [dataSource]="dataSource" multiTemplateDataRows aria-label="Elements" matSort>
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select" style="width: 10px;">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <!--  -->
+          <td mat-cell *matCellDef="let row">
+            <!-- (click)="check(row)" -->
+            <mat-checkbox (change)="$event ? check(row) : null" (click)="$event.stopPropagation()"
+              [checked]="isSelected(row)" [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columnDefs[1].columnDef">
+          <th mat-header-cell *matHeaderCellDef>{{columnDefs[1].headName}}</th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[1].columnDef]}}</td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columnDefs[2].columnDef">
+          <th mat-header-cell *matHeaderCellDef>{{columnDefs[2].headName}}</th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[2].columnDef]}}</td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columnDefs[3].columnDef">
+          <th mat-header-cell *matHeaderCellDef>{{columnDefs[3].headName}}</th>
+          <td mat-cell *matCellDef="let row">
+            <!-- {{row[columnDefs[3].columnDef]}} -->
+            <input type="number" [value]="getValue(row.id)" #q (change)="change(row, q.value)" [disabled]="!isSelected(row)">
+          </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columnDefs[4].columnDef">
+          <th mat-header-cell *matHeaderCellDef >
+            <div class="reload">
+              <p>{{columnDefs[4].headName}}</p>
+              <button mat-icon-button (click)="refresh()" matTooltip="vider la selection">
+                <mat-icon>refresh</mat-icon>
+              </button>
+            </div>
+          </th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[4].columnDef]}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <mat-paginator #paginator [length]="resultsLength" pageIndex="0" pageSize="25"
+      [pageSizeOptions]="[5, 25, 50, 100, 250]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

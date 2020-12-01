@@ -1,0 +1,189 @@
+<!-- <app-header [userName]="currentUser"></app-header> -->
+<!-- <app-menu></app-menu>
+<div class="content-wrapper">
+  <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer> -->
+
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <mat-toolbar-row>
+    <button mat-button (click)="snav.toggle()" routerLinkActive="active">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <p>Gestion commerciale</p>
+    &nbsp;&nbsp;&nbsp;
+    <p>{{(this.myMedia.windowSizeChanged | async).width}}</p>
+
+    <button mat-raised-button [routerLink]="['/home']" class="ml-2"> Home </button>
+    <span class="example-spacer"></span>
+    <!-- <p>role : {{session.getUser.profil.label}}</p> -->
+    <button mat-button matTooltip="Theme" [matMenuTriggerFor]="menuT" style="margin-right: 5px;">
+      <mat-icon>format_color_fill</mat-icon>
+    </button>
+    <mat-menu #menuT="matMenu">
+      <button mat-menu-item (click)="changeTheme('dark-theme')">
+        <mat-icon style="color: black;">color_lens</mat-icon><strong>Dark</strong>
+      </button>
+      <button mat-menu-item (click)="changeTheme('default-theme')">
+        <mat-icon style="color: #1976d2;">color_lens</mat-icon><strong>Light</strong>
+      </button>
+    </mat-menu>
+
+
+
+    <!-- <p>&nbsp;||&nbsp;organisme : {{session.getUser.organisme.label}}</p> -->
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="beforeMenu">
+      {{session.user.nomComplete}} (<b>{{session.user.role.nom}} </b>)
+
+    </button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <!-- <button mat-menu-item [routerLink]="['/admin/compte']">Compte</button> -->
+      <button mat-menu-item (click)="disconnect()">Déconnecter</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+<!-- <button mat-button (click)="snav.toggle()" routerLinkActive="active">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <p>Système de suivi des recommandations</p>
+  <span class="example-spacer"></span>
+
+  <button mat-button [matMenuTriggerFor]="beforeMenu">{{session.getUser.nom}}</button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <button mat-menu-item [routerLink]="['/admin/compte']">Compte</button>
+    <button mat-menu-item (click)="disconnect()">Déconnecter</button>
+  </mat-menu> -->
+
+<mat-sidenav-container #sidenav class="example-sidenav-container" style="height: 100%;z-index: 9;">
+  <mat-sidenav #snav [mode]="(!mobileQuery.matches) ? 'side' : 'push'" [opened]="opened && !mobileQuery.matches"
+    [fixedInViewport]="true" fixedTopGap="50">
+    <mat-nav-list class="list" style="width: 220px; padding: 0;">
+      <div class="logo">
+        <img src="../assets/logo.png" alt="marit logo" width="210">
+      </div>
+      <mat-divider></mat-divider>
+      <!-- <mat-list-item [routerLink]="['/admin/accueil']" routerLinkActive="router-link-active">
+        <mat-icon>home</mat-icon>&nbsp;<span>Accueil</span>
+      </mat-list-item> -->
+      <mat-divider></mat-divider>
+      <!-- <mat-list-item [routerLink]="['/admin/vente']" routerLinkActive="router-link-active">
+        <mat-icon>shop_two</mat-icon>&nbsp;<span>Ventes</span>
+      </mat-list-item>
+      <mat-divider></mat-divider> -->
+      <mat-list-item [routerLink]="['/admin/state-height-sell']" routerLinkActive="router-link-active">
+        <mat-icon>show_chart</mat-icon>&nbsp;<span>Statistiques</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item [routerLink]="['/admin/dash']" routerLinkActive="router-link-active">
+        <mat-icon>shopping_cart</mat-icon>&nbsp;<span>Ventes</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item [routerLink]="['/admin/vente']" routerLinkActive="router-link-active">
+        <mat-icon>shop_two</mat-icon>&nbsp;<span>Situation Vente</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngIf="session.isAdmin || session.isManager" [routerLink]="['/admin/state']"
+        routerLinkActive="router-link-active">
+        <mat-icon>recent_actors</mat-icon>&nbsp;<span>Situation Fournisseur</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngIf="session.isAdmin || session.isManager" [routerLink]="['/admin/state-stock']"
+        routerLinkActive="router-link-active">
+        <mat-icon>move_to_inbox</mat-icon>&nbsp;<span>Situation Stock</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngIf="session.isAdmin || session.isManager" [routerLink]="['/admin/devis']"
+        routerLinkActive="router-link-active">
+        <mat-icon>assessment</mat-icon>&nbsp;<span>Devis</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+
+
+
+      <mat-accordion>
+        <!-- <mat-expansion-panel expanded="true" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Ventes
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-divider></mat-divider>
+          <mat-list-item [routerLink]="['/admin/dash/0']" routerLinkActive="router-link-active">
+            <mat-icon>shopping_cart</mat-icon>&nbsp;<span>Tout</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+          <mat-list-item *ngFor="let e of categories | async; let i=index" [routerLink]="['/admin/dash', e.id]"
+            routerLinkActive="router-link-active">
+            <mat-icon>category</mat-icon>&nbsp;<span>{{e.libelle.toUpperCase()}}</span>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+
+        </mat-expansion-panel> -->
+
+        <mat-expansion-panel *ngIf="session.isAdmin || session.isManager" (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Paramétrage
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list-item *ngIf="session.isAdmin || session.isManager" [routerLink]="['/admin/article']"
+            routerLinkActive="router-link-active">
+            <mat-icon>redeem</mat-icon>&nbsp;<span>Articles</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item *ngIf="session.isAdmin" [routerLink]="['/admin/categorie']"
+            routerLinkActive="router-link-active">
+            <mat-icon>shopping_basket</mat-icon>&nbsp;<span>Categorie</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item *ngIf="session.isAdmin" [routerLink]="['/admin/sous-categorie']"
+            routerLinkActive="router-link-active">
+            <mat-icon>shop_two</mat-icon>&nbsp;<span>Sous Categorie</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item *ngIf="session.isAdmin" [routerLink]="['/admin/fournisseur']"
+            routerLinkActive="router-link-active">
+            <mat-icon>supervisor_account</mat-icon>&nbsp;<span>Fournisseurs</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+          <mat-list-item *ngIf="session.isAdmin" [routerLink]="['/admin/user']" routerLinkActive="router-link-active">
+            <mat-icon>folder_shared</mat-icon>&nbsp;<span>Utilisateurs</span>
+          </mat-list-item>
+          <mat-list-item *ngIf="false" [routerLink]="['/admin/role']" routerLinkActive="router-link-active">
+            <mat-icon>control_point_duplicate</mat-icon>&nbsp;<span>Role</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+
+    <!-- <div style="margin: 65px auto 15px;" class="mybreadcrumb">
+        <div *ngFor="let s of patchRoute" class="items">
+          <a [routerLink]="['/home/connection']">{{ s !== '-1' ? s : 'nauveau'}}</a><mat-icon>navigate_next</mat-icon>
+        </div>
+      </div> -->
+    <main style="margin: 65px 0 0 5px; overflow: hidden;">
+      <router-outlet></router-outlet>
+    </main>
+
+    <!-- <footer>
+        <mat-toolbar class="mt-2 text" color="primary">
+          <mat-toolbar-row style="height: 70px">
+            <span style="margin-left: auto; margin-right: auto;"> © {{ d | date:"dd/MMMM/yyyy" }} - Yaasin MOURABIT</span>
+          </mat-toolbar-row>
+        </mat-toolbar>
+      </footer> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

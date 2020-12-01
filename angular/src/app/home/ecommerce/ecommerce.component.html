@@ -1,0 +1,36 @@
+<mat-toolbar class="mat-elevation-z6 fixed-top" style="margin-top: 50px;">
+  <mat-toolbar-row style="height: 80px;" class="d-flex align-items-center justify-content-between container">
+
+
+
+    <span>Total : <span matBadge="DH" matBadgeOverlap="false">{{service.globalTotal.toFixed(2)}}</span></span>
+
+    <button mat-mini-fab>
+      <mat-icon [matBadge]="service.panniers.length" (click)="tabService.tabEcommerceIndex.setValue(1)"
+        style="cursor: pointer;">shopping_cart</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+
+<main class="container" style="margin-top: calc(130px + 10px);">
+  <!-- <router-outlet></router-outlet> -->
+
+
+  <mat-tab-group style="overflow: hidden;" headerPosition="top" [selectedIndex]="tabService.tabEcommerceIndex.value"
+    (selectedIndexChange)="tabService.tabEcommerceIndex.setValue($event)">
+    <mat-tab label="Product">
+
+      <app-product></app-product>
+    </mat-tab>
+
+    <mat-tab label="Panier">
+      <app-panier></app-panier>
+    </mat-tab>
+
+    <mat-tab label="purchase">
+      <app-purchase></app-purchase>
+    </mat-tab>
+  </mat-tab-group>
+</main>

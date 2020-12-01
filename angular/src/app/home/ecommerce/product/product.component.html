@@ -1,0 +1,65 @@
+<div #div></div>
+<mat-tab-group headerPosition="top" [selectedIndex]="tabService.tabProductIndex.value"
+  (selectedIndexChange)="tabService.tabProductIndex.setValue($event)">
+  <!-- <mat-tab label="Achat" [disabled]='false'>
+    <ng-template matTabContent>
+      <div style="margin: 15px;">
+        <app-product></app-product>
+      </div>
+    </ng-template>
+  </mat-tab> -->
+  <mat-tab label="First">
+
+    <div class="row justify-content-center">
+      <mat-form-field appearance="fill" class="col-md-12">
+        <!-- <mat-label>Categorie</mat-label> -->
+        <mat-select [formControl]="idCategorie">
+          <mat-option [value]="0">Toutes les catégories</mat-option>
+          <mat-option *ngFor="let e of categories | async" [value]="e.id">
+            {{ e.libelle.charAt(0).toUpperCase() + e.libelle.slice(1) }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4" *ngFor="let e of dataSource; let i=index">
+        <!-- (click)="select(e)" -->
+        <mat-card (click)="select(e)">
+          <div class="head mb-2">
+            <p>{{e.titreFr}}</p>
+          </div>
+
+          <div>
+            <img [src]="getImage(e.image)" alt="{{e.titreFr}}" style="width: 100%;">
+          </div>
+
+          <div class="">
+            <p class="m-0 mt-2 font-weight-bold">{{e.prixUnitaire}} DH</p>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+    <mat-paginator #paginator [length]="resultsLength" pageIndex="0" pageSize="10" style="visibility:hidden; height: 0;"
+      [pageSizeOptions]="[5, 10, 25, 50, 100, 250]" showFirstLastButtons>
+    </mat-paginator>
+
+    <div class="d-flex justify-content-center align-items-center mt-2 mb-3">
+      <button mat-raised-button color="accent" [disabled]="!paginator.hasPreviousPage()"
+        (click)="paginator.previousPage(); div.scrollIntoView({block: 'end', inline: 'nearest', behavior: 'smooth'})">
+        <mat-icon style="margin-bottom: 2.5px;">keyboard_arrow_left</mat-icon> Retour
+      </button>
+      &nbsp;&nbsp;
+      <button mat-raised-button color="accent" [disabled]="!paginator.hasNextPage()"
+        (click)="paginator.nextPage(); div.scrollIntoView({block: 'end', inline: 'nearest', behavior: 'smooth'})">
+        Plus de produits <mat-icon style="margin-bottom: 2.5px;">keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+
+
+  </mat-tab>
+
+
+
+  <mat-tab label="Detail" [disabled]='seletedProduct.id === 0'>
+    <app-detail [o]="seletedProduct"></app-detail>
+  </mat-tab>
+</mat-tab-group>

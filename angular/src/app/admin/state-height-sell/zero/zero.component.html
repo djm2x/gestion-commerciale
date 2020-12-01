@@ -1,0 +1,49 @@
+<div class="host">
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle>Crédit / Clients</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>{{getCreditFournisseurs | async}} DH</p>
+                </mat-card-content>
+            </mat-card>
+            <!-- <mat-card>
+                <mat-card-content>
+                    <div class="face">
+                        <h6>Crédit / Clients</h6>
+                        <p>{{getCreditClients | async}} DH</p>
+                    </div>
+                    <div class="back">
+                        <h6>الائتمان / العملاء</h6>
+                        <p>{{getCreditClients | async}} درهم</p>
+                    </div>
+                </mat-card-content>
+            </mat-card> -->
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle>Crédit / Fournisseurs</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>{{getCreditFournisseurs | async}} DH</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="col-md-4 col-sm-4">
+
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle>CHiffre d'affaire / {{year}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p style="margin-left: auto;">{{getChiffreParAnnee | async}} DH</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

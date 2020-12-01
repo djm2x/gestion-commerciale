@@ -1,0 +1,85 @@
+<div class="dialog">
+    <h1 mat-dialog-title>
+        <mat-toolbar role="toolbar" class="task-header">
+            <span>{{title}}</span>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+    </h1>
+    <div class="content">
+        <div mat-dialog-content>
+            <div class="expension">
+                <div class="row p-2">
+                    <mat-form-field appearance="outline" class="col-md-6 col-sm-6">
+                        <mat-label>Fournisseur</mat-label>
+                        <input matInput [formControl]="myAuto" [matAutocomplete]="auto" placeholder="Auto completion">
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                            <mat-option *ngFor="let e of filteredOptions | async" [value]="e">{{ e.societe }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <button mat-icon-button matSuffix (click)="reset()">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="col-md-6 col-sm-6">
+                        <mat-label>Avance</mat-label>
+                        <input matInput [formControl]="avance" type="number" required>
+                    </mat-form-field>
+                </div>
+
+                <div class="rightN">
+                    <button mat-raised-button color="primary" [disabled]="disable" (click)="submit()">
+                        <mat-icon>done_all</mat-icon>
+                        Payer
+                    </button>
+                    <!-- <button mat-raised-button (click)="reset()">
+                        <mat-icon>refresh</mat-icon>
+                        Réinitialiser
+                    </button> -->
+                </div>
+            </div>
+            <p style="font-style: italic; font-weight: bold;">Les achats qu'on le crédit est supérieur à zéro</p>
+            <div class="example-container mat-elevation-z8 mb-3">
+                <div class="example-loading-shade" *ngIf="isLoadingResults">
+                    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+                </div>
+                <div class="example-table-container">
+                    <table mat-table #table [dataSource]="dataSource" multiTemplateDataRows aria-label="Elements"
+                        matSort>
+                        <ng-container [matColumnDef]="columnDefs[0].columnDef">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[0].headName}}</th>
+                            <td mat-cell *matCellDef="let row">{{row[columnDefs[0].columnDef] | date : "dd/MM/yyyy"}}
+                            </td>
+                        </ng-container>
+                        <ng-container [matColumnDef]="columnDefs[1].columnDef">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[1].headName}}</th>
+                            <td mat-cell *matCellDef="let row">{{row[columnDefs[1].columnDef] }}</td>
+                        </ng-container>
+                        <ng-container [matColumnDef]="columnDefs[2].columnDef">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[2].headName}}</th>
+                            <td mat-cell *matCellDef="let row">{{row[columnDefs[2].columnDef]}}</td>
+                        </ng-container>
+                        <ng-container [matColumnDef]="columnDefs[3].columnDef">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[3].headName}}</th>
+                            <td mat-cell *matCellDef="let row">{{row[columnDefs[3].columnDef]}}</td>
+                        </ng-container>
+
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    </table>
+                </div>
+
+                <mat-paginator #paginator [length]="resultsLength" pageIndex="0" pageSize="25"
+                    [pageSizeOptions]="[10, 25, 50, 100, 250]" showFirstLastButtons>
+                </mat-paginator>
+            </div>
+        </div>
+
+
+        <div class="actions" mat-dialog-actions>
+            <button mat-button (click)="onNoClick()" type="button">Retour</button>
+        </div>
+    </div>
+</div>

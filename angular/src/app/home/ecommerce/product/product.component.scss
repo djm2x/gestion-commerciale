@@ -1,0 +1,88 @@
+mat-card {
+  // margin-bottom: 10px;
+  // padding: 10px !important;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+  // height: 20rem;
+  // transform: scale(1);
+  // transition: transform .3s ease-in-out, box-shadow .2s ease-in-out, border .5s ease-in-out;
+  // &:hover {
+  //   transform: scale(1.008);
+  //   border: 2px solid rgba(61, 61, 61, 0.267);
+  //   box-shadow: 2px 20px 40px -15px grey;
+  // }
+}
+
+// mat-card, button {
+//   width: 10rem;
+//   margin: 10px !important;
+//   height: 7rem;
+//   transform: scale(1);
+//   transition: transform .3s ease-in-out, box-shadow .6s ease-in-out;
+//   &:hover {
+//     transform: scale(1.1);
+//     box-shadow: 1px 20px 10px -15px grey;
+//   }
+// }
+
+img {
+  width: 10rem;
+  cursor: pointer;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  width: 100% ;
+  p {
+    margin: 10px 0 0;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.head {
+  // position: absolute;
+  // top: 0;
+  width: 100%;
+  // text-align: center;
+  // padding: 10px 5px 5px;
+  p {
+    margin: 0;
+    font-size: .8em;
+  }
+}
+
+.info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0 15px;
+  p {
+    // margin: 0 ;
+  }
+
+  .stock{
+    font-size: .8em;
+    font-style: italic;
+    color: gray;
+  }
+
+  .price{
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+}
+
+

@@ -1,0 +1,49 @@
+<div class="host">
+  <app-title title="Modifie vente"></app-title>
+  <mat-card>
+    <form [formGroup]="myForm">
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-md-4 col-sm-4">
+          <mat-label>total</mat-label>
+          <input matInput formControlName="total" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline"  class="col-md-4 col-sm-4">
+          <mat-label>Client</mat-label>
+          <!-- <textarea matInput rows="0" formControlName="nom" required></textarea>  [disabled]="true"-->
+          <input matInput formControlName="nomClient" required >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline"  class="col-md-4 col-sm-4"> 
+          <mat-label>Date Achat</mat-label>
+          <input matInput readonly [matDatepicker]="picker" formControlName="date" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-4 col-sm-4">
+          <mat-label>Credit</mat-label>
+          <input matInput formControlName="credit" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-4 col-sm-4">
+          <mat-label>Avance</mat-label>
+          <input matInput formControlName="avance" required>
+        </mat-form-field>
+
+      </div>
+    </form>
+
+  <!-- {{myForm.value | json}} -->
+  <div class="actions">
+    <button mat-button [routerLink]="['/admin/vente/list']" type="button">Retour</button>&nbsp;&nbsp;
+    <!-- <button mat-button (click)="reset()" type="button">Annuler</button>&nbsp;&nbsp; -->
+    <button mat-raised-button cdkFocusInitial color="primary" (click)="submit(myForm.value)"
+      [disabled]="myForm.invalid">Enregistre</button>
+  </div>
+  <mat-divider> </mat-divider>
+  <div class="pt-3">
+    <app-detail [reCalculteTotalForParent]="reCalculteTotalFromCHild" [fromParent]="toChild"></app-detail>
+  </div>
+</mat-card>
+</div>

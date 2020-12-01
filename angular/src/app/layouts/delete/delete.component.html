@@ -1,0 +1,19 @@
+<div class="dialog">
+  <h1 mat-dialog-title>
+      <mat-toolbar role="toolbar" class="task-header">
+        <span>Suppression {{model}} </span>
+      </mat-toolbar>
+      <mat-divider></mat-divider>
+    </h1>
+  <div class="content">
+    <div mat-dialog-content>
+      <p>Voulez-vous vraiment supprimer?</p>
+    </div>
+
+    <div class="actions" mat-dialog-actions>
+      <button mat-button (click)="onNoClick()" type="button">Annuler</button>
+      <button mat-button [mat-dialog-close]="" color="primary" type="button" (click)="onOkClick()"
+        cdkFocusInitial>Ok</button>
+    </div>
+  </div>
+</div>

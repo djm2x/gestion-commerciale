@@ -1,0 +1,76 @@
+<div class="row spc">
+  <div class="col-md-12">
+    <mat-card class="row mrg">
+      <!-- <h3>Total </h3> -->
+      <h3>Total pannier : {{service.globalTotal.toFixed(2)}}</h3>
+      <app-submit></app-submit>
+    </mat-card>
+
+    <!-- <div class="row mrg">
+      <app-submit></app-submit>
+    </div> -->
+  </div>
+
+
+  <div class="col-md-12">
+    <mat-card>
+      <h3>Articles</h3>
+      <div class="even-odd">
+
+
+        <div class="mycol back" *ngFor="let e of service.panniers; let i=index">
+
+          <div class="title">
+            <p>{{e.titreFr}}</p>
+            <p>{{e.titreAr}}</p>
+          </div>
+
+          <div class="myrow2 space-between" style="width: 100%;">
+            <div>
+              <mat-form-field [style.color]="invalid ? 'red' : ''">
+                <input matInput #prixVente [value]="e.prixUnitaire" placeholder="prix">
+                <mat-error *ngIf="true">prix depasse 10%</mat-error>
+              </mat-form-field>
+              &nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput #qtePrise [value]="e.qtePrise" placeholder="qte">
+              </mat-form-field>
+              &nbsp;&nbsp;
+              <mat-form-field>
+                <mat-select #remise placeholder="remise" value="0">
+                  <mat-option value="0">0 %</mat-option>
+                  <mat-option value="5">5 %</mat-option>
+                  <mat-option value="10">10 %</mat-option>
+                  <mat-option value="15">15 %</mat-option>
+                  <mat-option value="20">20 %</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <!-- <p> = {{+prixVente.value * +qtePrise.value}}</p> -->
+            <div class="myrow2">
+
+              <!-- <p>{{(+e.prixVente * +e.qtePrise) * (1 - (+remise.value) / 100)}}</p> -->
+              <p>{{service.panniers[i].prixTotal.toFixed(2)}}</p>
+
+              <button mat-icon-button (click)="edit(i,e, prixVente.value, qtePrise.value, remise.value)" color="warn">
+                <mat-icon>create</mat-icon>
+              </button>
+              <button mat-icon-button (click)="delete(e)" color="warn">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+          <!-- <p>{{e.prixUnitaire}} Dh / {{e.qtePrise}} : {{e.prixUnitaire * e.qtePrise}}
+        </p> -->
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <!-- <pre>
+    {{service.panniers | json}}
+  </pre> -->
+
+</div>
+
+<!-- {{service.panniers | json}} -->

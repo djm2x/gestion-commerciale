@@ -1,0 +1,20 @@
+mat-card {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: baseline;
+
+  button {
+    width: 100px;
+    height: 35px;
+  }
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.right {
+  display: flex;
+  flex-direction: row-reverse;
+}

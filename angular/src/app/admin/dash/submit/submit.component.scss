@@ -1,0 +1,29 @@
+:host {
+  width: 100%;
+}
+
+.submit {
+  width: 100%;
+  // margin: 10px !important;
+  // height: 7rem;
+  p {
+    margin: 0;
+  }
+
+  mat-icon {
+    font-size: 1.7rem;
+  }
+}
+
+.btns {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 7px;
+}
+
+button {
+  p {
+    margin: 10px 0 !important;
+    line-height: 12px
+  }
+}

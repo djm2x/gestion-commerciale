@@ -1,0 +1,52 @@
+<mat-card>
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <mat-form-field style="width: 100%;" class="example-full-width">
+        <input matInput [formControl]="name" placeholder="Article">
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Fournisseur</mat-label>
+        <mat-select [formControl]="idFournisseur">
+          <mat-option *ngFor="let e of fourns | async" [value]="e.id">{{e.nom}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Construteur</mat-label>
+        <mat-select [formControl]="constructeur">
+          <mat-option *ngFor="let e of consts | async" [value]="e">{{e}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Categorie</mat-label>
+        <mat-select [formControl]="idCategorie" (selectionChange)="selectionChange($event)">
+          <mat-option value="0">...</mat-option>
+          <mat-option *ngFor="let e of categories | async" [value]="e.id">{{e.libelle}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field style="width: 100%;" *ngIf="sousCategories.length !== 0">
+        <mat-label>Sous Categorie</mat-label>
+        <mat-select [formControl]="idSousCategorie">
+          <mat-option *ngFor="let e of sousCategories" [value]="e.id">{{e.libelle}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="right">
+      <button mat-raised-button (click)="filter()" [disabled]="isEmpty" color="primary">
+        <mat-icon>search</mat-icon>
+      </button>
+      &nbsp;&nbsp;&nbsp;
+      <button mat-raised-button (click)="reset()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-card>

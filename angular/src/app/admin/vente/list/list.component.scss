@@ -1,0 +1,62 @@
+section {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+::ng-deep h3 {
+  margin: 0 !important;
+}
+
+.host {
+  margin: 1em !important;
+}
+
+.expension {
+  margin: 20px 0;
+}
+
+.right {
+  margin: 0 20px 20px;
+}
+
+mat-panel-title {
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0 0 0 10px;
+  }
+
+  mat-icon {
+    margin-top: 5px;
+  }
+}
+.inputs2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25vw, 1fr));
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  // justify-content: space-around;
+  // flex-wrap: wrap;
+  align-items: center;
+  // mat-form-field {
+  //   width: 100%;
+  // }
+  margin: 15px 15px 0;
+}
+
+.rightN {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  padding: 0 15px 15px 0;
+}
+.mat-header-cell:last-child,
+.mat-cell:last-child {
+  min-width: 200px !important;
+}
+
+.mat-header-cell:nth-child(2), .mat-cell:nth-child(2) {
+  min-width: 100px !important;
+  padding: 0 5px;
+}

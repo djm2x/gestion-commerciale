@@ -1,0 +1,55 @@
+<div class="dialog">
+  <h1 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+      <span>{{title}}</span>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+  </h1>
+  <div class="content">
+    <div mat-dialog-content>
+
+      <form [formGroup]="myForm">
+        <mat-form-field style="width: 100%;" appearance="outline">
+          <mat-label>Article</mat-label>
+          <input matInput [formControl]="myAuto" [matAutocomplete]="auto" placeholder="Auto completion">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let e of filteredOptions | async" [value]="e">{{ e.titreFr }} </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>Prix Vente</mat-label>
+          <input matInput formControlName="prixVente" #p type="number" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>Qte Prise</mat-label>
+          <input matInput formControlName="qtePrise" #q type="number" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>Remise</mat-label>
+          <mat-select #r placeholder="remise" formControlName="remise">
+            <mat-option *ngFor="let e of remises; let i=index" [value]="e.value">{{e.display}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>Total</mat-label>
+          <input matInput formControlName="total" [value]="(+p.value * +q.value) * (1 - +myForm.get('remise').value / 100)" type="number" readonly>
+        </mat-form-field>
+
+        <!-- {{myForm.value | json}} -->
+        <!-- dd{{this.myAuto.value}}dd -->
+        
+      </form>
+    </div>
+
+    <div class="actions" mat-dialog-actions>
+      <button mat-button (click)="onNoClick()" type="button">Annuler</button>&nbsp;&nbsp;
+      <button mat-raised-button cdkFocusInitial color="primary" (click)="onOkClick(myForm.value)"
+        [disabled]="disable">Enregistre</button>
+    </div>
+  </div>
+</div>
