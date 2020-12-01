@@ -1,5 +1,5 @@
 # App web 
-[lien]:(https://aspme.herokuapp.com)
+[lien]:(https://co0merciale.herokuapp.com)
 
 ## Le projet à éte developpé par les technologies suivantes : 
 [ASP.net Core 3.1 SDK] :(https://dotnet.microsoft.com/download)
@@ -10,7 +10,7 @@
 
 ### la commande pour récuperer le repository du git est : 
 ```
-get clone  https://github.com/djm2x/brik-afric.git
+get clone  https://github.com/djm2x/gestion-commerciale.git
 ```
 
 ### Pour installer les dependences éxécuter la commande suivante : 
@@ -46,4 +46,3 @@ Cette commande au dessous (plus de detail dans package.json -> scripts) va pushe
 ```
 npm run ci 
 ```
-
